@@ -26,7 +26,7 @@ Here’s an example of how to make a request and validate the JSON or XML respon
 This framework supports two types of validation for Response Object
 Hamcrest Matcher: Added wrapper method which supports in-build in “Response Class
 
-'''
+```
 try {
     new RestAssuredCore((CommonUtil.returnProperties(Constant.PROPRETYFILEPATH, "serviceBaseURI"))
             , CommonUtil.returnProperties(Constant.PROPRETYFILEPATH, "serviceBasePath"))
@@ -36,18 +36,18 @@ try {
 } catch (Exception e) {
     e.printStackTrace();
 }
-'''
+```
 
 The above snapshot we pass baseURI, basePATH, resourcePath and url encoding and final invoke rest call and validate status code in using hamcrest matcher validation method.
 
 TestNG Validation: In Response class, you have to use getXXXX (Method start with get) where it return either integer or string based on method. Having return value you can implement TestNG assertion. For eg.,
 
-'''
+```
 @Test
 public void validateResponseCode() {
  int statusCode = restAssuredCore.invokeRestCall("GET", "/all").getStatusCode();
  Assert.assertEquals(statusCode, STATUSCODE_200);
 }
-'''
+```
 Further details please visit automationcalling.com
 
