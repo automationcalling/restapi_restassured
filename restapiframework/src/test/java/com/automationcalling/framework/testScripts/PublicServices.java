@@ -7,10 +7,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import static com.automationcalling.framework.utils.Constant.STATUSCODE_200;
 import static com.automationcalling.framework.wrapper.RestAssuredCore.closeLogger;
 import static com.automationcalling.framework.wrapper.RestAssuredCore.initializeLogger;
@@ -37,6 +39,22 @@ public class PublicServices {
     public void validateResponseCode() {
         int statusCode = restAssuredCore.setURLEncodingStatus(false).invokeRestCall("GET", "get/IND/UP").getStatusCode();
         Assert.assertEquals(statusCode, STATUSCODE_200);
+    }
+
+    @Test
+    /**
+     * Simple test validate in TestNG
+     */
+    public void ValidateResponseCode1() {
+        try {
+            new RestAssuredCore((CommonUtil.returnProperties(Constant.PROPRETYFILEPATH, "serviceBaseURI"))
+                    , CommonUtil.returnProperties(Constant.PROPRETYFILEPATH, "serviceBasePath"))
+                    .setURLEncodingStatus(false)
+                    .invokeRestCall("GET", "get/IND/UP")
+                    .hamcrestStatusCodeValidate(200);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
